@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     rclcpp::FutureReturnCode::SUCCESS)
   {
     auto result = result_future.get();
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "The robot is stopped");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "The robot has stopped");
   } else {
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service /stop");
   }

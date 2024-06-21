@@ -28,8 +28,12 @@ ament_target_dependencies(service_client_moving_node rclcpp std_srvs)
 add_executable(service_client_stop_node src/service_client_stop.cpp)
 ament_target_dependencies(service_client_stop_node rclcpp std_srvs)
 
+add_executable(service_client_moving_v2_node src/service_client_moving_v2.cpp)
+ament_target_dependencies(service_client_moving_v2_node rclcpp std_srvs)
+
 install(TARGETS
 	service_client_moving_node
+	service_client_moving_v2_node
 	service_client_stop_node
 	DESTINATION lib/${PROJECT_NAME}
 )
