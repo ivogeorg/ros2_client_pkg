@@ -22,11 +22,15 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-add_executable(service_client_node src/service_client.cpp)
-ament_target_dependencies(service_client_node rclcpp std_srvs)
+add_executable(service_client_moving_node src/service_client_moving.cpp)
+ament_target_dependencies(service_client_moving_node rclcpp std_srvs)
+
+add_executable(service_client_stop_node src/service_client_stop.cpp)
+ament_target_dependencies(service_client_stop_node rclcpp std_srvs)
 
 install(TARGETS
-	service_client_node
+	service_client_moving_node
+	service_client_stop_node
 	DESTINATION lib/${PROJECT_NAME}
 )
 

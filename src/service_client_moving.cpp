@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 
-  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("service_client");
+  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("service_client_moving");
   rclcpp::Client<std_srvs::srv::Empty>::SharedPtr client =
     node->create_client<std_srvs::srv::Empty>("moving");
 

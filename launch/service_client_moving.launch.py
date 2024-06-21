@@ -5,6 +5,6 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='client_pkg',
-            executable='service_client_node',
+            executable='service_client_moving_node',
             output='screen'),
     ])
