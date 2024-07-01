@@ -1,5 +1,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp/timer.hpp"
+#include "std_srvs/srv/detail/empty__struct.hpp"
 #include "std_srvs/srv/empty.hpp"
 
 #include <chrono>
@@ -15,10 +16,18 @@ private:
   rclcpp::TimerBase::SharedPtr timer_;
   bool service_done_ = false;
 
-  auto request = std::make_shared<std_srvs::srv::Empty::Request>();
-  auto result_future = client_->async_send_request(
-      request, std::bind(&ServiceClient::response_callback, this,
-                         std::placeholders::_1));
+  //   auto request = std::make_shared<std_srvs::srv::Empty::Request>();
+  rclcpp::Client<std_srvs::srv::Empty>::Request::SharedPtr request =
+      std::make_shared<std_srvs::srv::Empty::Request>();
+
+  //   auto result_future =
+  //   rclcpp::Client<std_srvs::srv::Empty>::SharedFuture<
+  //       std_srvs::srv::Empty::Response::SharedPtr>
+  //   std::shared_future<std_srvs::srv::Empty::Response::SharedPtr>
+  rclcpp::Client<std_srvs::srv::Empty>::SharedFuture<std_srvs::srv::Empty> result_future =
+      client_->async_send_request(request,
+                                  std::bind(&ServiceClient::response_callback,
+                                            this, std::placeholders::_1));
 
   void timer_callback() {
     while (!client_->wait_for_service(1s)) {
